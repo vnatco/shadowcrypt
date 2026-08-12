@@ -1,12 +1,13 @@
 {
   "name": "shadowcrypt",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "AES-256 file encryption & decryption",
   "main": "out/main/index.js",
   "scripts": {
     "dev": "electron-vite dev",
     "build": "electron-vite build",
     "package": "npm run build && electron-builder --win",
+    "package:linux": "npm run build && electron-builder --linux",
     "preview": "electron-vite preview"
   },
   "devDependencies": {
@@ -29,9 +30,22 @@
       "buildResources": "resources"
     },
     "files": ["out/**"],
+    "fileAssociations": [
+      {
+        "ext": "aes",
+        "name": "ShadowCrypt Encrypted File",
+        "description": "ShadowCrypt Encrypted File",
+        "mimeType": "application/x-shadowcrypt"
+      }
+    ],
     "win": {
       "target": [{ "target": "nsis", "arch": ["x64"] }],
       "icon": "resources/icon.ico"
+    },
+    "linux": {
+      "target": [{ "target": "AppImage", "arch": ["x64"] }],
+      "icon": "resources/icon.png",
+      "category": "Utility"
     },
     "nsis": {
       "oneClick": false,
