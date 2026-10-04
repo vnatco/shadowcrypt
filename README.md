@@ -19,7 +19,7 @@ A free, open-source desktop app for encrypting and decrypting files with a passw
 - **No size limit** - files of any size are streamed, never loaded into memory
 - **Explorer / Finder integration** - double-click `.aes` files; on Windows, right-click any file and choose *Open With ShadowCrypt*
 - **Offline** - no network access, no telemetry, no accounts
-- **No admin required** - per-user install on Windows
+- **Install for all users or just yourself** - the Windows installer defaults to all users and also offers a per-user install that needs no admin rights
 
 ## Supported formats
 
@@ -99,7 +99,7 @@ src/                       User interface (React)
 
 ## Upgrading from ShadowCrypt 1.x
 
-2.0 is a rewrite on Tauri (much smaller installer, native Rust crypto). Uninstall 1.x from *Settings > Apps* before installing 2.0. Files encrypted with 1.x open normally in 2.0.
+2.0 is a rewrite on Tauri (much smaller installer, native Rust crypto). The 2.0 installer removes 1.x automatically before installing. Files encrypted with 1.x open normally in 2.0.
 
 ## License
 
