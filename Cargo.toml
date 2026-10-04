@@ -1,0 +1,24 @@
+[workspace]
+resolver = "2"
+members = ["crates/shadowcrypt-core", "src-tauri"]
+
+[workspace.package]
+version = "2.0.0"
+edition = "2021"
+license = "MIT"
+repository = "https://github.com/vnatco/shadowcrypt"
+
+# Key derivation (scrypt / PBKDF2) is painfully slow without optimisation,
+# so optimise dependencies even in dev builds and tests.
+[profile.dev.package."*"]
+opt-level = 3
+
+[profile.dev.package.shadowcrypt-core]
+opt-level = 2
+
+[profile.release]
+codegen-units = 1
+lto = true
+opt-level = 3
+panic = "abort"
+strip = true

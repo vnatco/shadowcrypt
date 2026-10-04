@@ -1,0 +1,71 @@
+{
+  "$schema": "https://schema.tauri.app/config/2",
+  "productName": "ShadowCrypt",
+  "mainBinaryName": "ShadowCrypt",
+  "version": "2.0.0",
+  "identifier": "dev.vnat.shadowcrypt",
+  "build": {
+    "beforeDevCommand": "npm run dev:web",
+    "devUrl": "http://localhost:1420",
+    "beforeBuildCommand": "npm run build:web",
+    "frontendDist": "../dist"
+  },
+  "app": {
+    "withGlobalTauri": false,
+    "windows": [
+      {
+        "label": "main",
+        "title": "ShadowCrypt",
+        "width": 400,
+        "height": 520,
+        "resizable": false,
+        "maximizable": false,
+        "fullscreen": false,
+        "decorations": false,
+        "visible": false,
+        "center": true,
+        "backgroundColor": "#0b0e14"
+      }
+    ],
+    "security": {
+      "csp": "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src ipc: http://ipc.localhost"
+    }
+  },
+  "bundle": {
+    "active": true,
+    "targets": ["nsis", "app", "dmg", "appimage", "deb", "rpm"],
+    "publisher": "ShadowCrypt",
+    "category": "Utility",
+    "shortDescription": "Free AES-256 file encryption, compatible with AES Crypt",
+    "longDescription": "Encrypt and decrypt files with a password. Opens files from every AES Crypt version (stream formats 0-3) for free.",
+    "copyright": "Copyright (c) 2026 ShadowCrypt Contributors. MIT License.",
+    "icon": [
+      "icons/32x32.png",
+      "icons/128x128.png",
+      "icons/128x128@2x.png",
+      "icons/icon.icns",
+      "icons/icon.ico"
+    ],
+    "fileAssociations": [
+      {
+        "ext": ["aes"],
+        "name": "ShadowCrypt Encrypted File",
+        "description": "Encrypted File (AES Crypt / ShadowCrypt)",
+        "role": "Editor",
+        "mimeType": "application/x-aescrypt"
+      }
+    ],
+    "windows": {
+      "nsis": {
+        "installMode": "currentUser",
+        "installerHooks": "./windows/hooks.nsh"
+      }
+    },
+    "macOS": {
+      "minimumSystemVersion": "10.15"
+    },
+    "linux": {
+      "deb": { "section": "utils" }
+    }
+  }
+}

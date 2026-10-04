@@ -1,0 +1,26 @@
+[
+ {
+  "file": "empty.scr2.aes",
+  "plain": "empty.bin",
+  "password": "Hello",
+  "plain_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+ },
+ {
+  "file": "short.scr2.aes",
+  "plain": "short.bin",
+  "password": "Hello",
+  "plain_sha256": "dc864668200e7913aa6082d4947130b262d0fc6cb6383e0376e19c1cc31d445c"
+ },
+ {
+  "file": "unicode_pw.scr2.aes",
+  "plain": "unicode_pw.bin",
+  "password": "pässwörd 🔑 ключ",
+  "plain_sha256": "b15a3089fc86cbe6d72b2dcf5890b35d0ebf72e10d740ac3b1d92652e1ab34f1"
+ },
+ {
+  "file": "multi_chunk.scr2.aes",
+  "plain": "multi_chunk.bin",
+  "password": "correct horse battery staple",
+  "plain_sha256": "3f027be40540a8904fe246e0811eb6c44dfc44893457ab2374fbbb0646ead45f"
+ }
+]

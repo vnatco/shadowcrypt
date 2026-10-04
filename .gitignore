@@ -1,6 +1,9 @@
+# Dependencies and build output
 node_modules/
-out/
-release/
-.claude/
-CLAUDE.md
-*.blockmap
+dist/
+target/
+src-tauri/gen/
+
+# Only README.md files are committed as Markdown
+*.md
+!/README.md

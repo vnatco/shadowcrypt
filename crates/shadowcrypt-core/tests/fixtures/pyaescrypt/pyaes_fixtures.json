@@ -1,0 +1,20 @@
+[
+ {
+  "file": "py_unicode_pw.aes",
+  "password": "pässwörd 🔑 ключ",
+  "plain_sha256": "490d93ef5e2745220dd47242fb96c4a2a85aa22a4709b3086c798ede3352b2e9",
+  "size": 1037
+ },
+ {
+  "file": "py_large.aes",
+  "password": "Tr0ub4dor&3",
+  "plain_sha256": "f34df07040737e04a2d683a8171d53532a44f44afc6a5c6e954827635297b0cf",
+  "size": 2560000
+ },
+ {
+  "file": "py_block_aligned.aes",
+  "password": "Hello",
+  "plain_sha256": "156c38442089c1323d3e3ba549a6ac24341c47e8b6367bec4740c9b8c865826e",
+  "size": 65536
+ }
+]
