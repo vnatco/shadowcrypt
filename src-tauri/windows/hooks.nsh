@@ -67,6 +67,17 @@
 !macro NSIS_HOOK_PREINSTALL
   !insertmacro SC_REMOVE_V1 HKLM
   !insertmacro SC_REMOVE_V1 HKCU
+
+  ; ShadowCrypt 1.x always wrote its file association to HKCU and its own
+  ; uninstaller does not reliably remove it. A per-user .aes mapping overrides
+  ; the all-users one, so drop anything that still points at the 1.x handler.
+  ReadRegStr $R0 HKCU "Software\Classes\.aes" ""
+  ${If} $R0 == "ShadowCrypt.aes"
+    DeleteRegValue HKCU "Software\Classes\.aes" ""
+    DeleteRegValue HKCU "Software\Classes\.aes" "PerceivedType"
+    DeleteRegKey /ifempty HKCU "Software\Classes\.aes"
+  ${EndIf}
+  DeleteRegKey HKCU "Software\Classes\ShadowCrypt.aes"
 !macroend
 
 !macro NSIS_HOOK_POSTINSTALL
@@ -80,6 +91,21 @@
 
 !macro NSIS_HOOK_POSTUNINSTALL
   DeleteRegKey SHCTX "Software\Classes\*\shell\ShadowCrypt"
+  ${If} $UpdateMode <> 1
+    ; Tauri "restores" the previous .aes association on uninstall, which leaves
+    ; an .aes key with an empty default value when there was none before. An
+    ; empty per-user key would also hide an all-users install's association,
+    ; so remove it when nothing else claims .aes.
+    ReadRegStr $R0 SHCTX "Software\Classes\.aes" ""
+    ${If} $R0 == ""
+      DeleteRegValue SHCTX "Software\Classes\.aes" "ShadowCrypt Encrypted File_backup"
+      DeleteRegValue SHCTX "Software\Classes\.aes" ""
+      DeleteRegKey /ifempty SHCTX "Software\Classes\.aes"
+    ${EndIf}
+    ; Install-location record the template only removes when "delete app data" is ticked
+    DeleteRegKey SHCTX "Software\ShadowCrypt\ShadowCrypt"
+    DeleteRegKey /ifempty SHCTX "Software\ShadowCrypt"
+  ${EndIf}
   ; The app keeps no user data; this folder only holds the WebView2 cache of
   ; the user running the uninstaller. Keep it during updates.
   ${If} $UpdateMode <> 1

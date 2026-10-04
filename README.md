@@ -84,7 +84,7 @@ npm test
 
 ## Releases and code signing
 
-Pushing a tag like `v2.0.0` runs `.github/workflows/release.yml`, which builds Windows (NSIS), macOS (universal `.dmg`) and Linux (AppImage, `.deb`, `.rpm`) packages and attaches them to a draft GitHub release.
+Running the *Release* workflow from the Actions tab (with a tag like `v2.0.0`) builds Windows (NSIS), macOS (universal `.dmg`) and Linux (AppImage, `.deb`, `.rpm`) packages and attaches them to a draft GitHub release.
 
 - **macOS:** signed and notarized automatically when the `APPLE_*` repository secrets are set.
 - **Windows:** not signed yet. Signing needs a code signing certificate plus `bundle.windows.signCommand` in `src-tauri/tauri.conf.json`. Until then, SmartScreen shows a warning on first run.
